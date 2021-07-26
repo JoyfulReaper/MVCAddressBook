@@ -49,7 +49,9 @@ namespace AddressBook.Controllers
         // GET: Contacts/Create
         public IActionResult Create()
         {
-            return View();
+            Contact contact = new();
+
+            return View(contact);
         }
 
         // POST: Contacts/Create
@@ -66,6 +68,8 @@ namespace AddressBook.Controllers
                     contact.ImageData = await _imageService.ConvertFileToByteArrayAsync(contact.ImageFile);
                     contact.ImageType = contact.ImageFile.ContentType;
                 }
+
+                contact.Created = DateTime.Now;
 
                 _context.Add(contact);
                 await _context.SaveChangesAsync();

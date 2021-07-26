@@ -19,7 +19,7 @@ namespace AddressBook.Data.Migrations
                     Address2 = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     City = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     State = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Zip = table.Column<int>(type: "int", nullable: false),
+                    Zip = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
                     ImageData = table.Column<byte[]>(type: "varbinary(max)", nullable: true),

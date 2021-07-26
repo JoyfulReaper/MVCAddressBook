@@ -44,7 +44,7 @@ namespace AddressBook.Models
         public string State { get; set; }
 
         [DataType(DataType.PostalCode)]
-        public int Zip { get; set; }
+        public string Zip { get; set; }
 
         [MaxLength(200)]
         [DataType(DataType.EmailAddress)]
