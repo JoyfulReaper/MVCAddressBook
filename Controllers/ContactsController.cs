@@ -99,7 +99,7 @@ namespace AddressBook.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Address1,Address2,City,State,Zip,Email,Phone,ImageData,ImageType,Created")] Contact contact)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Address1,Address2,City,State,Zip,Email,Phone,ImageFile,Created")] Contact contact)
         {
             if (id != contact.Id)
             {
@@ -110,6 +110,12 @@ namespace AddressBook.Controllers
             {
                 try
                 {
+                    if(contact.ImageFile != null)
+                    {
+                        contact.ImageData = await _imageService.ConvertFileToByteArrayAsync(contact.ImageFile);
+                        contact.ImageType = contact.ImageFile.ContentType;
+                    }
+
                     _context.Update(contact);
                     await _context.SaveChangesAsync();
                 }
